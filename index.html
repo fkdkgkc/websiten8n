@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dzai Automation | Intelligent Automation Agency</title>
+    <meta name="description" content="Transform your business with AI Automation. Intelligent workflows that save time and reduce costs.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* =========================================
+           VARIABLES & RESET
+           ========================================= */
+        :root {
+            --primary: #FFFFFF;
+            --secondary: #0A1628;
+            --secondary-light: #1E3A5F;
+            --gold: #D4AF37;
+            --gray-light: #F5F7FA;
+            --blue-electric: #4A90E2;
+            --text-charcoal: #2C3E50;
+            --text-light: #E2E8F0;
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.3);
+            --blur: blur(12px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-charcoal);
+            background-color: var(--primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* =========================================
+           UTILITIES & ANIMATIONS
+           ========================================= */
+        .container {
+            width: 90%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .text-center { text-align: center; }
+        .text-navy { color: var(--secondary); }
+        .text-gold { color: var(--gold); }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(10, 22, 40, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--blue-electric);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Glassmorphism Mixin */
+        .glass {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
+            border: var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        .glass-dark {
+            background: rgba(10, 22, 40, 0.6);
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* =========================================
+           HEADER & NAVIGATION
+           ========================================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 20px 0;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i { color: var(--blue-electric); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-charcoal);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--blue-electric);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            cursor: pointer;
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at top right, rgba(74, 144, 226, 0.15), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(10, 22, 40, 0.1), transparent 40%);
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        /* Abstract background shapes */
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+        }
+        .shape-1 {
+            top: -10%;
+            right: -5%;
+            width: 500px;
+            height: 500px;
+            background: rgba(74, 144, 226, 0.2);
+        }
+        .shape-2 {
+            bottom: -10%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .hero-text .highlight {
+            color: var(--blue-electric);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .floating-card {
+            position: absolute;
+            padding: 30px;
+            border-radius: 20px;
+            width: 320px;
+            z-index: 2;
+        }
+
+        .card-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        /* =========================================
+           ABOUT SECTION
+           ========================================= */
+        #about {
+            background-color: var(--primary);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--blue-electric);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item h4 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* =========================================
+           WORKFLOWS SECTION
+           ========================================= */
+        #workflows {
+            background-color: var(--gray-light);
+        }
+
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .workflow-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .workflow-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: var(--blue-electric);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(74, 144, 226, 0.1);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: var(--blue-electric);
+            margin-bottom: 20px;
+        }
+
+        .workflow-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .workflow-card p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .link-btn {
+            color: var(--blue-electric);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .link-btn i {
+            transition: transform 0.3s;
+        }
+
+        .link-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        /* =========================================
+           MODAL SYSTEM
+           ========================================= */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 20px;
+            padding: 50px;
+            position: relative;
+            transform: scale(0.8);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-backdrop.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            background: #f0f0f0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: var(--text-charcoal);
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .modal-info h2 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .modal-benefits li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .modal-benefits li i {
+            color: var(--green, #27ae60);
+        }
+
+        /* =========================================
+           TESTIMONIALS (MARQUEE)
+           ========================================= */
+        #testimonials {
+            padding: 80px 0;
+            background: linear-gradient(to bottom, var(--primary), var(--gray-light));
+            overflow: hidden;
+        }
+
+        .marquee-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 40px 0;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 30px;
+            width: max-content;
+            animation: scroll 40s linear infinite;
+        }
+        
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 15px)); } /* Adjusted for gap */
+        }
+
+        .testimonial-card {
+            width: 400px;
+            padding: 30px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            flex-shrink: 0;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .client-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            object-fit: cover;
+        }
+
+        .stars { color: var(--gold); margin-bottom: 10px; }
+
+        /* =========================================
+           BENEFITS / IMPACT
+           ========================================= */
+        #impact {
+            background-color: var(--secondary);
+            color: white;
+            position: relative;
+        }
+        
+        #impact .section-title { color: white; }
+        #impact .section-subtitle { color: var(--blue-electric); }
+
+        .benefit-row {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+        
+        .benefit-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .benefit-row:last-child { margin-bottom: 0; }
+
+        .benefit-visual {
+            flex: 1;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+            color: var(--blue-electric);
+            position: relative;
+        }
+
+        .benefit-text {
+            flex: 1;
+        }
+
+        .benefit-text h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .impact-stat {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            display: block;
+            margin-top: 20px;
+        }
+
+        /* =========================================
+           CONTACT SECTION
+           ========================================= */
+        #contact {
+            background: var(--gray-light);
+        }
+
+        .contact-wrapper {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+        }
+
+        .contact-form {
+            padding: 60px;
+        }
+
+        .contact-info {
+            background: var(--secondary);
+            color: white;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Floating Labels */
+        .form-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .form-label {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            color: #999;
+            transition: var(--transition);
+            pointer-events: none;
+            background: white;
+            padding: 0 5px;
+        }
+
+        .form-control:focus, .form-control:not(:placeholder-shown) {
+            border-color: var(--blue-electric);
+        }
+
+        .form-control:focus + .form-label,
+        .form-control:not(:placeholder-shown) + .form-label {
+            top: -10px;
+            font-size: 0.85rem;
+            color: var(--blue-electric);
+        }
+        
+        textarea.form-control { resize: vertical; min-height: 120px; }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--blue-electric);
+            margin-top: 5px;
+        }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+        footer {
+            background-color: #050c16;
+            color: white;
+            padding: 80px 0 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #aaa; font-size: 0.95rem; }
+        .footer-links a:hover { color: var(--blue-electric); }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* =========================================
+           RESPONSIVE DESIGN
+           ========================================= */
+        @media (max-width: 1024px) {
+            .hero-content, .about-grid, .contact-wrapper, .modal-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-visual { display: none; } /* Hide complex visual on tablet/mobile for simplicity */
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simple hide, needs JS toggle */
+            .mobile-menu-btn { display: block; }
+            
+            .hero-text h1 { font-size: 2.5rem; }
+            
+            .benefit-row, .benefit-row:nth-child(even) {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .modal-body { grid-template-columns: 1fr; }
+            
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-brain"></i> Dzai Automation
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#workflows">Workflows</a></li>
+                    <li><a href="#impact">Impact</a></li>
+                    <li><a href="#contact" class="btn btn-primary" style="padding: 10px 25px;">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        
+        <div class="container hero-content">
+            <div class="hero-text reveal">
+                <span class="section-subtitle">Next Gen Automation</span>
+                <h1>Transform Your Business with <span class="highlight">Intelligent AI</span></h1>
+                <p>We build custom AI workflows that automate repetitive tasks, reduce operational costs, and let your team focus on what truly matters.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn btn-primary">Get Started</a>
+                    <a href="#workflows" class="btn btn-outline">View Workflows</a>
+                </div>
+            </div>
+            
+            <div class="hero-visual reveal">
+                <!-- Floating Glass Cards Effect -->
+                <div class="floating-card glass floating">
+                    <div class="card-stats">
+                        <div>
+                            <p style="font-size: 0.8rem; color: #666;">Efficiency</p>
+                            <div class="stat-number">+300%</div>
+                        </div>
+                        <i class="fa-solid fa-chart-line" style="color: var(--green, #27ae60); font-size: 2rem;"></i>
+                    </div>
+                    <div style="height: 6px; background: #eee; border-radius: 3px; overflow: hidden;">
+                        <div style="width: 85%; height: 100%; background: var(--blue-electric);"></div>
+                    </div>
+                    <p style="font-size: 0.8rem; margin-top: 10px; color: #666;">Daily tasks automated successfully.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section-padding">
+        <div class="container about-grid">
+            <div class="about-content reveal">
+                <span class="section-subtitle">Who We Are</span>
+                <h2 class="section-title">Empowering Businesses Through Innovation</h2>
+                <p>Dzai Automation is a premier automation agency dedicated to bridging the gap between complex AI technology and practical business applications. We don't just build bots; we engineer ecosystems.</p>
+                <p>Our team of  workflow architects analyze your operations to pinpoint bottlenecks and deploy scalable solutions.</p>
+                
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <h4 class="counter" data-target="40">0</h4>
+                        <p>Hours Saved / Wk</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4 class="counter" data-target="50">0</h4>
+                        <p>Workflows Deployed</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4 class="counter" data-target="99">0</h4>
+                        <p>% Accuracy Rate</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4 class="counter" data-target="24">0</h4>
+                        <p>/ 7 Active Support</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image reveal" style="text-align: center;">
+                <img src="https://i.postimg.cc/MHkYBV5v/cec852916c693259e0965e2f05d1bfff.jpg" alt="Team working on AI" style="border-radius: 20px; box-shadow: var(--shadow);">
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKFLOWS SECTION -->
+    <section id="workflows" class="section-padding">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-subtitle">Our Solutions</span>
+                <h2 class="section-title">Intelligent Workflows</h2>
+                <p style="max-width: 600px; margin: 0 auto 40px;">Powerful, modular automation solutions tailored to your specific industry needs.</p>
+            </div>
+
+            <div class="workflow-grid">
+                <!-- Workflow 1 -->
+                <div class="workflow-card reveal" 
+                     data-title="Customer Support Chatbots" 
+                     data-desc="Deploy AI-powered agents that handle 80% of customer inquiries instantly, 24/7. Our chatbots understand context, sentiment, and can escalate complex issues to human agents seamlessly."
+                     data-benefit1="24/7 Instant Responses"
+                     data-benefit2="Reduces Ticket Volume by 60%"
+                     data-benefit3="Multi-language Support">
+                    <div class="card-icon"><i class="fa-solid fa-headset"></i></div>
+                    <h3>Support AI Agents</h3>
+                    <p>Automate customer service with AI chatbots that resolve 80% of queries instantly.</p>
+                    <button class="link-btn open-modal">Learn More <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- Workflow 2 -->
+                <div class="workflow-card reveal"
+                     data-title="Lead Generation & Outreach"
+                     data-desc="Automate the process of finding, qualifying, and contacting leads. Our system scrapes data, verifies emails, and sends personalized outreach sequences that adjust based on recipient behavior."
+                     data-benefit1="Automated Email Sequences"
+                     data-benefit2="Real-time Lead Qualification"
+                     data-benefit3="CRM Auto-Population">
+                    <div class="card-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <h3>Lead Gen Systems</h3>
+                    <p>Scale your outreach with automated scraping, qualification, and email sequences.</p>
+                    <button class="link-btn open-modal">Learn More <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- Workflow 3 -->
+                <div class="workflow-card reveal"
+                     data-title="Document Processing"
+                     data-desc="Stop manual data entry. Our AI extracts structured data from invoices, contracts, and receipts with 99.9% accuracy and syncs it directly to your accounting software."
+                     data-benefit1="OCR & NLP Technology"
+                     data-benefit2="Zero Data Entry Errors"
+                     data-benefit3="Instant Sync to Quickbooks/Xero">
+                    <div class="card-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                    <h3>Document Processing</h3>
+                    <p>Extract data from invoices and forms automatically with high-accuracy OCR.</p>
+                    <button class="link-btn open-modal">Learn More <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- Workflow 4 -->
+                <div class="workflow-card reveal"
+                     data-title="Content Automation"
+                     data-desc="Generate SEO-optimized blog posts, social media captions, and graphics at scale. Maintain a consistent brand voice across all channels without the heavy lifting."
+                     data-benefit1="Auto-generate Social Posts"
+                     data-benefit2="SEO Blog Writing"
+                     data-benefit3="Brand Voice Consistency">
+                    <div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div>
+                    <h3>Content Automation</h3>
+                    <p>Generate high-quality social media posts and blogs tailored to your brand voice.</p>
+                    <button class="link-btn open-modal">Learn More <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- Workflow 5 -->
+                <div class="workflow-card reveal"
+                     data-title="CRM Integration"
+                     data-desc="Connect your marketing tools with your sales pipeline. Automatically update deal stages, log communications, and trigger tasks for your sales team."
+                     data-benefit1="Seamless Data Flow"
+                     data-benefit2="Automated Follow-ups"
+                     data-benefit3="Clean Data Management">
+                    <div class="card-icon"><i class="fa-solid fa-database"></i></div>
+                    <h3>CRM Integration</h3>
+                    <p>Sync data seamlessly between your marketing tools and sales pipelines.</p>
+                    <button class="link-btn open-modal">Learn More <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- Workflow 6 -->
+                <div class="workflow-card reveal"
+                     data-title="Appointment Scheduling"
+                     data-desc="Eliminate the back-and-forth emails. Our system qualifies prospects via chat and books appointments directly into your team's calendar based on availability."
+                     data-benefit1="Syncs with G-Cal/Outlook"
+                     data-benefit2="Automated Reminders"
+                     data-benefit3="Reduces No-Show Rates">
+                    <div class="card-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                    <h3>Smart Scheduling</h3>
+                    <p>Qualify leads and book appointments directly into your calendar automatically.</p>
+                    <button class="link-btn open-modal">Learn More <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS MARQUEE -->
+    <section id="testimonials">
+        <div class="container text-center" style="margin-bottom: 30px;">
+            <h2 class="section-title">Trusted by Industry Leaders</h2>
+        </div>
+        
+        <div class="marquee-container">
+            <!-- We duplicate the content to create a seamless loop -->
+            <div class="marquee-track">
+                <!-- Set 1 -->
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"Dzai Automation completely transformed our customer support. We saved 40 hours a week immediately."</p>
+                    <div class="client-profile">
+                        <img src="https://i.pravatar.cc/100?img=1" alt="Client" class="client-avatar">
+                        <div>
+                            <strong>Sarah Jenkins</strong><br>
+                            <small>CEO, TechFlow</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"The lead generation workflow paid for itself in the first month. Incredible ROI."</p>
+                    <div class="client-profile">
+                        <img src="https://i.pravatar.cc/100?img=2" alt="Client" class="client-avatar">
+                        <div>
+                            <strong>Michael Ross</strong><br>
+                            <small>Director, Apex Realty</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"We were drowning in data entry. Aura's document processing solution is a lifesaver."</p>
+                    <div class="client-profile">
+                        <img src="https://i.pravatar.cc/100?img=3" alt="Client" class="client-avatar">
+                        <div>
+                            <strong>Elena Rodriguez</strong><br>
+                            <small>CFO, Logistics Pro</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"Professional, fast, and the automation actually works exactly as described."</p>
+                    <div class="client-profile">
+                        <img src="https://i.pravatar.cc/100?img=4" alt="Client" class="client-avatar">
+                        <div>
+                            <strong>David Chen</strong><br>
+                            <small>Founder, StartUp Inc</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Set 2 (Duplicate for loop) -->
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"Dzai Automation completely transformed our customer support. We saved 40 hours a week immediately."</p>
+                    <div class="client-profile">
+                        <img src="https://i.pravatar.cc/100?img=1" alt="Client" class="client-avatar">
+                        <div>
+                            <strong>Sarah Jenkins</strong><br>
+                            <small>CEO, TechFlow</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"The lead generation workflow paid for itself in the first month. Incredible ROI."</p>
+                    <div class="client-profile">
+                        <img src="https://i.pravatar.cc/100?img=2" alt="Client" class="client-avatar">
+                        <div>
+                            <strong>Michael Ross</strong><br>
+                            <small>Director, Apex Realty</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"We were drowning in data entry. Dzai Automation's document processing solution is a lifesaver."</p>
+                    <div class="client-profile">
+                        <img src="https://i.pravatar.cc/100?img=3" alt="Client" class="client-avatar">
+                        <div>
+                            <strong>Elena Rodriguez</strong><br>
+                            <small>CFO, Logistics Pro</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"Professional, fast, and the automation actually works exactly as described."</p>
+                    <div class="client-profile">
+                        <img src="https://i.pravatar.cc/100?img=4" alt="Client" class="client-avatar">
+                        <div>
+                            <strong>David Chen</strong><br>
+                            <small>Founder, StartUp Inc</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT/BENEFITS SECTION -->
+    <section id="impact" class="section-padding">
+        <div class="bg-shape shape-2" style="top: 20%; left: 20%;"></div>
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom: 80px;">
+                <span class="section-subtitle">The Impact</span>
+                <h2 class="section-title">Why Automate?</h2>
+            </div>
+
+            <div class="benefit-row reveal">
+                <div class="benefit-visual glass-dark">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+                <div class="benefit-text">
+                    <h3>Reclaim Your Time</h3>
+                    <p>Stop wasting valuable human intellect on robotic tasks. By automating repetitive processes, your team gains back hours every day to focus on strategy, creativity, and growth.</p>
+                    <span class="impact-stat">40+ Hours</span>
+                    <span style="font-size: 0.9rem; opacity: 0.8;">Saved per employee/month</span>
+                </div>
+            </div>
+
+            <div class="benefit-row reveal">
+                <div class="benefit-visual glass-dark">
+                    <i class="fa-solid fa-coins"></i>
+                </div>
+                <div class="benefit-text">
+                    <h3>Reduce Operational Costs</h3>
+                    <p>Automation scales instantly without the need for new hires, benefits, or training. Our workflows run 24/7 for a fraction of the cost of manual labor.</p>
+                    <span class="impact-stat">60%</span>
+                    <span style="font-size: 0.9rem; opacity: 0.8;">Reduction in operational costs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom: 50px;">
+                <h2 class="section-title">Let's Transform Your Business</h2>
+                <p>Schedule a free consultation to discuss your automation needs.</p>
+            </div>
+
+            <div class="contact-wrapper reveal">
+                <div class="contact-form">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="8f801bfe-7d6c-4040-9703-71f32a42b977">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" class="form-control" placeholder=" " required>
+                            <label for="name" class="form-label">Full Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" class="form-control" placeholder=" " required>
+                            <label for="email" class="form-label">Business Email</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="company" name="company" class="form-control" placeholder=" " required>
+                            <label for="company" class="form-label">Company Name</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select id="service" name="workflow" class="form-control" style="padding-top: 15px; color: #555;">
+                                <option value="" disabled selected>Interested Workflow...</option>
+                                <option value="chatbots">Customer Support Chatbots</option>
+                                <option value="leads">Lead Generation</option>
+                                <option value="docs">Document Processing</option>
+                                <option value="custom">Custom Solution</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea id="message" name="message" class="form-control" placeholder=" " required></textarea>
+                            <label for="message" class="form-label">Project Description</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Start Your Journey</button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <div>
+                        <h3>Contact Information</h3>
+                        <p style="opacity: 0.8; margin-bottom: 30px;">We are ready to help you optimize your workflows.</p>
+                        
+                        <div class="info-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div>
+                                <strong>Headquarters</strong><br>
+                                Algiers ,Algeria
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div>
+                                <strong>Email Us</strong><br>
+                                contact@dzaiagency.digital
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <div>
+                                <strong>Call Us</strong><br>
+                                +213 562117356
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-shape shape-1" style="width: 200px; height: 200px; top: auto; bottom: -50px; right: -50px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL POPUP -->
+    <div class="modal-backdrop" id="workflowModal">
+        <div class="modal-content">
+            <div class="close-modal" id="closeModalBtn">&times;</div>
+            <div class="modal-body">
+                <div class="modal-info">
+                    <h2 id="modalTitle">Workflow Title</h2>
+                    <p id="modalDesc" style="color: #555; line-height: 1.8;">Description goes here...</p>
+                    <a href="#contact" class="btn btn-primary" style="margin-top: 30px;" onclick="document.getElementById('workflowModal').classList.remove('active')">Get a Quote</a>
+                </div>
+                <div class="modal-visual">
+                    <h4 style="margin-bottom: 15px;">Key Benefits</h4>
+                    <ul class="modal-benefits" id="modalBenefits">
+                        <!-- Populated via JS -->
+                    </ul>
+                    <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px; text-align: center;">
+                        <i class="fa-solid fa-gears" style="font-size: 3rem; color: var(--secondary-light); opacity: 0.3;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="color: white; margin-bottom: 20px;">
+                        <i class="fa-solid fa-brain" style="color: var(--blue-electric);"></i> AURA AI
+                    </a>
+                    <p style="color: #aaa; max-width: 300px;">Empowering forward-thinking companies with intelligent automation solutions.</p>
+                    <div style="margin-top: 20px;">
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" style="color: white;"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#workflows">Workflows</a></li>
+                        <li><a href="#impact">Case Studies</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p style="color: #aaa; font-size: 0.9rem;">Subscribe for the latest AI trends.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Email">
+                        <button type="button" class="btn btn-primary" style="padding: 10px 15px;"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Aura AI Automation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Sticky Navigation
+            const header = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // 2. Scroll Reveal Animation
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Start counters if this is the stats section
+                        if(entry.target.querySelector('.counter')) {
+                            startCounters();
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // 3. Modal System
+            const modal = document.getElementById('workflowModal');
+            const openBtns = document.querySelectorAll('.open-modal');
+            const closeBtn = document.getElementById('closeModalBtn');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDesc = document.getElementById('modalDesc');
+            const modalBenefits = document.getElementById('modalBenefits');
+
+            openBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const card = btn.closest('.workflow-card');
+                    const title = card.getAttribute('data-title');
+                    const desc = card.getAttribute('data-desc');
+                    const b1 = card.getAttribute('data-benefit1');
+                    const b2 = card.getAttribute('data-benefit2');
+                    const b3 = card.getAttribute('data-benefit3');
+
+                    modalTitle.textContent = title;
+                    modalDesc.textContent = desc;
+                    
+                    modalBenefits.innerHTML = `
+                        <li><i class="fa-solid fa-check-circle"></i> ${b1}</li>
+                        <li><i class="fa-solid fa-check-circle"></i> ${b2}</li>
+                        <li><i class="fa-solid fa-check-circle"></i> ${b3}</li>
+                    `;
+
+                    modal.classList.add('active');
+                });
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+
+            // Close on backdrop click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+
+            // 4. Number Counters
+            let countersStarted = false;
+            function startCounters() {
+                if(countersStarted) return;
+                const counters = document.querySelectorAll('.counter');
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000; // 2 seconds
+                    const increment = target / (duration / 16); // 60fps
+                    
+                    let current = 0;
+                    const updateCounter = () => {
+                        current += increment;
+                        if(current < target) {
+                            counter.textContent = Math.ceil(current);
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target + "+";
+                        }
+                    };
+                    updateCounter();
+                });
+                countersStarted = true;
+            }
+
+            // 5. Form Submission (Mock)
+            const form = document.getElementById('automationForm');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const btn = form.querySelector('button');
+                const originalText = btn.textContent;
+                
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+
+                // Simulate server delay
+                setTimeout(() => {
+                    alert('Thank you! Your inquiry has been received. We will contact you shortly.');
+                    form.reset();
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                }, 1500);
+            });
+
+            // 6. Mobile Menu
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            menuBtn.addEventListener('click', () => {
+                if(navLinks.style.display === 'flex') {
+                    navLinks.style.display = 'none';
+                } else {
+                    navLinks.style.display = 'flex';
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '70px';
+                    navLinks.style.right = '0';
+                    navLinks.style.background = 'white';
+                    navLinks.style.width = '100%';
+                    navLinks.style.padding = '20px';
+                    navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
